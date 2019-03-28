@@ -1,11 +1,6 @@
 package com.arbiter34.file.io;
 
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
+import java.io.*;
 
 public class BinaryAccessFile  extends RandomAccessFile {
 
@@ -43,5 +38,15 @@ public class BinaryAccessFile  extends RandomAccessFile {
             throw new EOFException();
         long ret = ((ch1 << 24) + (ch2 << 16) + (ch3 << 8) + (ch4));
         return (ret << 32) >>> 32;
+    }
+
+    public void clean() {
+        try {
+            close();
+            new File(getPath()).delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
