@@ -9,3 +9,5 @@ out/
 *.byml
 *.sbyml
 release/
+/build/
+/.gradle/
